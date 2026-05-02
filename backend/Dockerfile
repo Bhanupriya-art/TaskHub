@@ -8,14 +8,12 @@ RUN npm install
 
 COPY . .
 RUN npx prisma generate
+RUN npm prune --production
 
 # Production stage
 FROM node:18-alpine
 
 WORKDIR /app
-
-COPY package*.json ./
-RUN npm install --only=production
 
 COPY --from=builder /app /app
 
