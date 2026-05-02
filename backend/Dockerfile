@@ -7,6 +7,7 @@ COPY package*.json ./
 RUN npm install
 
 COPY . .
+RUN npx prisma generate
 
 # Production stage
 FROM node:18-alpine
